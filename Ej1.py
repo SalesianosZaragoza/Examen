@@ -13,7 +13,9 @@ class Producer(threading.Thread):
 
 	def run(self):
 		while True:
-			self.queue.put(random.randint(100, 500))   
+			print("Producer thread for queue")
+			self.queue.put(random.randint(100, 500)) 
+			print(list(self.queue.queue))  
 			time.sleep(self.pt) # PT producer time
 
 
@@ -34,11 +36,12 @@ class Consumer(threading.Thread):
 			for i in range(self.x):  
 				list.append(self.queue.get())
 			
-			solution = 0
+			solution = 1
 			for i in list:
 				solution *= i
+			print(solution)
 
-		time.sleep(self.ct)  # CT consumer time
+			time.sleep(self.ct)  # CT consumer time
 	
  
 def mainEj(nP,nC,pt,ct,X):
@@ -68,5 +71,5 @@ def mainEj(nP,nC,pt,ct,X):
 
 
 mainEj(2,1,1,4,3)
-
- 
+mainEj(4,2,2,2,2)
+mainEj(2,5,1,10,4)
